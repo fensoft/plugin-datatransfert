@@ -2,8 +2,9 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+$plugin = plugin::byId('datatransfert');
 sendVarToJS('eqType', 'datatransfert');
-$eqLogics = eqLogic::byType('datatransfert');
+$eqLogics = eqLogic::byType($plugin->getId());
 ?>
 
 <script type="text/javascript">
@@ -32,7 +33,7 @@ $eqLogics = eqLogic::byType('datatransfert');
 			foreach ($eqLogics as $eqLogic) {
 				$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
 				echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
-				echo '<img src="plugins/datatransfert/doc/images/datatransfert_icon.png"  />';
+				echo '<img src="' . $plugin->getPathImgIcon() . '" />';
 				echo '<br>';
 				echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
 				echo '</div>';
