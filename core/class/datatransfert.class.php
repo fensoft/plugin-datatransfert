@@ -25,7 +25,8 @@ class datatransfert extends eqLogic {
         $return['log'] = __CLASS__ . '_update';
         $return['progress_file'] = jeedom::getTmpFolder(__CLASS__) . '_progress';
         $state = '';
-        exec("bash " . dirname(__FILE__) . "/../../external/check.sh", $out, $ret);
+        chmod(dirname(__FILE__) . "/../../external/check.sh", 0775);
+        exec(dirname(__FILE__) . "/../../external/check.sh", $out, $ret);
         if ($ret == 0) {
             $state = 'ok';
         } else {
@@ -182,8 +183,6 @@ class datatransfertCmd extends cmd {
             $eqLogic->setUploadStatus($this->getName(), "uploading");
             $eqLogic->setUploadProgress($this->getName(), 0);
             $class->setProgressCallback($this);
-            if (strpos($this->getConfiguration('cible'), 'https://') === 0 || strpos($this->getConfiguration('cible'), 'http://'))
-                throw new \Exception(__('Cible invalide : ',__FILE__) . $this->getConfiguration('cible'));
             $cible = ltrim(rtrim($this->getConfiguration('cible'), " /"), " ");
             $source = "/" . trim(calculPath($this->getConfiguration('source')), " /");
             if (!is_dir($source))
