@@ -21,32 +21,32 @@ if (!isConnect('admin')) {
 ?>
 
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Installation Dropbox}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Installation Dropbox}}</label>
+    <div class="col-sm-6">
         <a class="btn btn-primary btn-xs" href='https://www.dropbox.com/developers/apps' target="_blank">{{Lien}}</a>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{App key}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{App key}}</label>
+    <div class="col-sm-6">
         <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="clientId"/>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{App secret}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{App secret}}</label>
+    <div class="col-sm-6">
         <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="clientSecret"/>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Generated access token}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Generated access token}}</label>
+    <div class="col-sm-6">
         <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="accessToken"/>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Scinder les logs}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Scinder les logs}}</label>
+    <div class="col-sm-6">
         <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="splitLogs"/>{{Scinder les logs}}</label>
     </div>
 </div>

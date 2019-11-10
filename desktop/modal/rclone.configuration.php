@@ -21,38 +21,38 @@ if (!isConnect('admin')) {
 ?>
 
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Installation RClone}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Installation RClone}}</label>
+    <div class="col-sm-6">
         <a class="btn btn-primary btn-xs" href='https://rclone.org/' target="_blank">{{Lien}}</a>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Configurateur automatique Windows}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Configurateur Windows}}</label>
+    <div class="col-sm-6">
         <a class="btn btn-primary btn-xs" href='plugins/datatransfert/external/rclone_windows/jeedom-rclone-configurator.zip' target="_blank">{{Lien}}</a>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Configurateur automatique Mac}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Configurateur Mac}}</label>
+    <div class="col-sm-6">
         <a class="btn btn-primary btn-xs" href='plugins/datatransfert/external/rclone_mac/jeedom-rclone-configurator.zip' target="_blank">{{Lien}}</a>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Configuration RClone}}</label>
-    <div class="col-sm-4">
-        <textarea rows="10" style="width: 300px;" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="rclone"/>
+    <label class="col-sm-2 control-label">{{Configuration RClone}}</label>
+    <div class="col-sm-6">
+        <textarea rows="20" style="width: 450px;" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="rclone"/>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Vitesse limite (ko/s)}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Vitesse limite (ko/s)}}</label>
+    <div class="col-sm-6">
         <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="speed" value="" />
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Scinder les logs}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Scinder les logs}}</label>
+    <div class="col-sm-6">
         <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="splitLogs"/>{{Scinder les logs}}</label>
     </div>
 </div>

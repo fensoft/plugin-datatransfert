@@ -2,12 +2,11 @@
 sudo apt-get update
 sudo apt-get -y install zip wget
 cd `dirname $0`
-VERSION=v1.38
-https://downloads.rclone.org/rclone-v1.38-osx-386.zip
+VERSION=v1.40
 
 chmod a+x *.sh
 rm -rf rclone-$VERSION-osx-386.zip rclone-$VERSION-osx-386 jeedom-rclone-configurator.app jeedom-rclone-configurator.zip
-wget https://downloads.rclone.org/rclone-$VERSION-osx-386.zip
+wget https://downloads.rclone.org/$VERSION/rclone-$VERSION-osx-386.zip
 unzip rclone-$VERSION-osx-386.zip
 mkdir jeedom-rclone-configurator.app
 mkdir -p jeedom-rclone-configurator.app/Contents/MacOS jeedom-rclone-configurator.app/Contents/Resources

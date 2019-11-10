@@ -2,11 +2,14 @@
 	"id" : "datatransfert",
 	"name" : "Data Transfert",
 	"description" : "Plugin pour transferer de fichiers",
+    "usage" : "Plugin d'envoi de fichier - protocoles: dropbox (passage en apiv2) local webdav ftp sftp google drive (la cible peut-être un folder-id, voir le lien au dessus de la config) samba rclone donc: Amazon Drive, Amazon S3, Backblaze B2, Box, Ceph, Dreamhost, Google Cloud Storage, Google Drive, HTTP, Hubic, Memset Memstore, Microsoft Azure Blob Storage, Microsoft OneDrive, Minio, OVH, Openstack Swift, Oracle Cloud Storage, QingStor, Rackspace Cloud Files, Wasabi, Yandex Disk (avec autoconfigurateur windows) - nettoyage auto distant (garder x jours ou x fichiers par exemple) - status (ok, ko, uploading, cleaning) - chemins récursifs (sauf pour gdrive avec des _ au lieu des / pour les sous dossiers) - date devinée à partir du nom du fichier par défaut (utilise celle du cloud sinon) - progression de l'upload au pourcent près",
 	"licence" : "AGPL",
 	"author" : "fensoft",
-	"require" : "3.0",
+	"require" : "3.3",
 	"category" : "communication",
 	"changelog" : "https://github.com/fensoft/plugin-datatransfert/commits/master",
 	"documentation" : "https://github.com/fensoft/plugin-datatransfert/blob/master/doc/#language#/index.asciidoc",
-	"hasDependency" : 1
+	"hasDependency" : 1,
+    "language" : ["de_DE","en_US","es_ES","fr_FR","id_ID","it_IT","ru_RU","sp_SP"],
+    "compatibility" : ["miniplus","smart","rpi","docker","diy","v4"]
 }

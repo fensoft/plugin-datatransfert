@@ -21,50 +21,50 @@ if (!isConnect('admin')) {
 ?>
 
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{URL}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{URL}}</label>
+    <div class="col-sm-6">
         <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="baseUri"/>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Nom d'utilisateur}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Nom d'utilisateur}}</label>
+    <div class="col-sm-6">
         <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="userName"/>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Mot de passe}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Mot de passe}}</label>
+    <div class="col-sm-6">
         <input type="password" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="password"/>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Ne pas verifier le certificat SSL}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Ne pas verifier le certificat SSL}}</label>
+    <div class="col-sm-6">
         <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="disableSslVerification" checked/>{{Ne pas verifier le certificat SSL}}</label>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Mode nextcloud}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Mode nextcloud}}</label>
+    <div class="col-sm-6">
         <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="nextcloud" checked/>{{Mode nextcloud}}</label>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Progression précise}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Progression précise}}</label>
+    <div class="col-sm-6">
         <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="preciseProgress"/>{{Progression précise}}</label>
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Vitesse limite (ko/s)}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Vitesse limite (ko/s)}}</label>
+    <div class="col-sm-6">
         <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="speed" value="" />
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-3 control-label">{{Scinder les logs}}</label>
-    <div class="col-sm-4">
+    <label class="col-sm-2 control-label">{{Scinder les logs}}</label>
+    <div class="col-sm-6">
         <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="splitLogs"/>{{Scinder les logs}}</label>
     </div>
 </div>
