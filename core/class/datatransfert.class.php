@@ -172,6 +172,28 @@ class datatransfertCmd extends cmd {
         }
     }
 
+  	public function resolveCmdVal($valeur="") {
+  		$new_valeur=$valeur;
+  
+        log::add('datatransfert','debug','resolveCmdVal input='.$valeur);
+  		$new_valeur_cmd="";
+  		
+  		//$cmdList = preg_split('/(#\\[[^#.]*\\]#)/', $valeur, null, PREG_SPLIT_DELIM_CAPTURE);
+		$cmdList = preg_split('/(#[^#.]+#)/', $valeur, null, PREG_SPLIT_DELIM_CAPTURE);
+		foreach ($cmdList as $val) {
+			log::add('datatransfert','debug','resolveCmdVal val='.$val);
+  			if (strpos($val, "#")!==false) {
+				$val = substr($val, 1,-1);
+	  			$cmd = cmd::byId($val);
+				$val = $cmd->execCmd();
+			}
+			$new_valeur_cmd.=$val;
+  		}
+  		$new_valeur=$new_valeur_cmd;
+  		log::add('datatransfert','debug','resolveCmdVal output='.$new_valeur);
+        return $new_valeur;
+    }
+  
     public function execute($_options = null) {
         try {
             $eqLogic = $this->getEqLogic();
@@ -184,39 +206,56 @@ class datatransfertCmd extends cmd {
             $eqLogic->setUploadProgress($this->getName(), 0);
             $class->setProgressCallback($this);
             $cible = ltrim(rtrim($this->getConfiguration('cible'), " /"), " ");
-            $source = "/" . trim(calculPath($this->getConfiguration('source')), " /");
-            if (!is_dir($source))
-                throw new \Exception(__('Dossier source manquant : ',__FILE__) . $source);
-            $res = array();
-            $filter_recentfile = $this->getConfiguration('filter_recentfile');
-            if ($this->getConfiguration('filter_recentfile') != '') {
-                $filelist = array();
-                foreach ($this->ls($source, $this->getConfiguration('filter_file', '*')) as $file) {
-                    $filelist[] = array(
-                        'file' => $file,
-                        'datetime' => filemtime($source . '/' . $file)
-                    );
-                }
-                usort($filelist, 'datatransfertCmd::orderFile');
-                foreach (array_slice($filelist, 0, $this->getConfiguration('filter_recentfile')) as $file)
-                    array_push($res, $file['file']);
-            } else {
-                $res = $this->ls($source, $this->getConfiguration('filter_file', '*'));
-            }
-            $total = 0;
-            foreach ($res as $file) {
-                $total = $total + filesize($source . "/" . $file);;
-            }
-            $this->setProgressTotal($total);
-            foreach ($res as $file) {
-                $cibleF = ($cible == "/") ? ("/" . $file) : ($cible . "/" . $file);
-                $class->log('info', "uploading " . $source . "/" . $file . " to " . $cibleF);
-                if (dirname($file) != "" && dirname($file) != null)
-                    $class->mkdir(dirname($cibleF));
-                $class->put($source . "/" . $file, $cibleF);
-                $class->log('info', "upload " . $source . "/" . $file . " to " . $cibleF . " complete !");
-                $this->setProgress($source . "/" . $file, filesize($source . "/" . $file));
-            }
+
+            $source = "/" . trim(calculPath($this->resolveCmdVal($this->getConfiguration('source'))), " /");
+            if (is_file($source)) {
+	            $file=basename($source);
+            	if (fnmatch($this->getConfiguration('filter_file', '*'), $file)) {
+		            $total = 1;
+		            $this->setProgressTotal($total);
+		            $cibleF = ($cible == "/") ? ("/" . $file) : ($cible . "/" . $file);
+		            $class->log('info', "uploading " . $source . " to " . $cibleF);
+		            if (dirname($file) != "" && dirname($file) != null)
+		                $class->mkdir(dirname($cibleF));
+		            $class->put($source , $cibleF);
+		            $class->log('info', "upload " . $source . " to " . $cibleF . " complete !");
+		            $this->setProgress($source , filesize($source));
+	        	}
+        	} else {
+	            if (!is_dir($source))
+	                throw new \Exception(__('Dossier source manquant : ',__FILE__) . $source);
+	            $res = array();
+	            $filter_recentfile = $this->getConfiguration('filter_recentfile');
+	            if ($this->getConfiguration('filter_recentfile') != '') {
+	                $filelist = array();
+	                foreach ($this->ls($source, $this->getConfiguration('filter_file', '*')) as $file) {
+	                    $filelist[] = array(
+	                        'file' => $file,
+	                        'datetime' => filemtime($source . '/' . $file)
+	                    );
+	                }
+	                usort($filelist, 'datatransfertCmd::orderFile');
+	                foreach (array_slice($filelist, 0, $this->getConfiguration('filter_recentfile')) as $file)
+	                    array_push($res, $file['file']);
+	            } else {
+	                $res = $this->ls($source, $this->getConfiguration('filter_file', '*'));
+	            }
+        	
+	            $total = 0;
+	            foreach ($res as $file) {
+	                $total = $total + filesize($source . "/" . $file);;
+	            }
+	            $this->setProgressTotal($total);
+	            foreach ($res as $file) {
+	                $cibleF = ($cible == "/") ? ("/" . $file) : ($cible . "/" . $file);
+	                $class->log('info', "uploading " . $source . "/" . $file . " to " . $cibleF);
+	                if (dirname($file) != "" && dirname($file) != null)
+	                    $class->mkdir(dirname($cibleF));
+	                $class->put($source . "/" . $file, $cibleF);
+	                $class->log('info', "upload " . $source . "/" . $file . " to " . $cibleF . " complete !");
+	                $this->setProgress($source . "/" . $file, filesize($source . "/" . $file));
+	            }
+        	}
             $eqLogic->setUploadStatus($this->getName(), "cleaning");
             if ($this->getConfiguration('remove_old') != "")
                 $class->removeOlder($cible, $this->getConfiguration('remove_old'));
